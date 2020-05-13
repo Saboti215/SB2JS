@@ -3,7 +3,22 @@
   <head>
     <script src="sb2js.js"></script>
     <script>
-      const sbCode = ""
+      const sbCode = `
+      exampleString = "Hello World"
+      exampleNumber = 42
+
+      For i = 1 To 10 Step 2
+        TextWindow.WriteLine(i)
+      EndFor
+        
+      For i = 1 To 10
+        TextWindow.WriteLine(i)
+      EndFor
+
+      If (exampleString = "test") Then
+        
+      EndIf
+      `
       console.log("SmallBasic Code:")
       console.log(sbCode)
       console.log("\n\n")
