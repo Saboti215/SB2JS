@@ -9,7 +9,7 @@ const convertSB2JS = c => {
   js = convertTextMethods(js)
   js = js
   .replace( // Convert End of Blocks
-    /(EndIf)|(EndFor)|(EndWhile)|(EndSub)/gim,
+    /(EndIf$)|(EndFor$)|(EndWhile$)|(EndSub$)/gim,
     "}"
   )
   .replace( // Replace For loop without Step
