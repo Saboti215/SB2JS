@@ -4,29 +4,13 @@
     <script src="sb2js.js"></script>
     <script>
       const sbCode = `
-      password = "Hello World"
-      TextWindow.WriteLine(password)
+      x = 100
+y = 100
+oldx = 150
+oldy = 1000
 
-      ' Check Password
-      If(password = "test") Then
-        TextWindow.WriteLine("Log in")
-      Else
-        TextWindow.WriteLine("Try again")
-      EndIf
-
-      i = 0
-      While(i < 0)
-        TextWindow.WriteLine(i)
-        i = i+1
-      EndWhile
-
-      For i = 1 To 10 Step 3
-        TextWindow.WriteLine(i)
-      EndFor
-
-      If(Math.Remainder(10,5) = 0) Then
-        TextWindow.Write("Hex")
-      EndIf
+For i = 1 To 100000
+EndFor
       `
       console.log("SmallBasic Code:")
       console.log(sbCode)

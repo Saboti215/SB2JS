@@ -2,7 +2,7 @@
 
 const convertSB2JS = c => {
   let js = c.replace( // Remove leading spaces
-    / +(.*)/gim,
+    /^(.*)/gim,
     "$1"
   )
   js = convertMathMethods(js) // Convert whole Math Library
@@ -12,17 +12,17 @@ const convertSB2JS = c => {
     /(EndIf)|(EndFor)|(EndWhile)|(EndSub)/gim,
     "}"
   )
-  .replace( // Convert Variable initialisation
-    /^([a-zA-Z0-9]*\s*=.*)$/gim,
-    "let $1"
+  .replace( // Replace For loop without Step
+    /For ([a-zA-Z0-9]+) = ([a-zA-Z0-9]+) To ([a-zA-Z0-9]+)$/gim,
+    "for (let $1 = $2; $1 <= $3; $1++){"
   )
   .replace( // Replace For loop with Step
     /For ([a-zA-Z0-9]+) = ([a-zA-Z0-9]+) To ([a-zA-Z0-9]+) Step ((-|\+)?[0-9]+)/gim,
     "for (let $1 = $2; $1 <= $3; $1+=$4){"
   )
-  .replace( // Replace For loop without Step
-    /For ([a-zA-Z0-9]+) = ([a-zA-Z0-9]+) To ([a-zA-Z0-9]+)/gim,
-    "for (let $1 = $2; $1 <= $3; $1++){"
+  .replace( // Convert Variable initialisation
+    /^([a-zA-Z0-9]*\s*=.*)$/gim,
+    "let $1"
   )
   .replace( // Replace unequal
     /(<>)/gim,
@@ -45,7 +45,7 @@ const convertSB2JS = c => {
     " || "
   )
   .replace( // Replace If
-    /If\s*(.*)\s*Then/gim,
+    /If\s*(.+)\s*Then/gim,
     "if ($1) {"
   )
   .replace( // Replace ElseIf
