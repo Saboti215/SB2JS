@@ -4,13 +4,9 @@
     <script src="sb2js.js"></script>
     <script>
       const sbCode = `
-      x = 100
-y = 100
-oldx = 150
-oldy = 1000
-
-For i = 1 To 100000
-EndFor
+      Sub hello
+          TextWindow.Writeline("Test")
+      EndSub
       `
       console.log("SmallBasic Code:")
       console.log(sbCode)

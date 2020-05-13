@@ -74,7 +74,7 @@ const convertSB2JS = c => {
   )
   .replace( // Replace Subs
     /Sub (.+)/gim,
-    "function $0 () {"
+    "function $1 () {"
   )
   .replace( // Add ; after every line which doesn't end with { or }
     /^(.+)(?<!({|}))$/gim,
