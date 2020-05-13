@@ -28,6 +28,10 @@ const convertSB2JS = c => {
     /TextWindow.Write(Line)?\((.*)\)/gim,
     "console.log($1)"
   )
+  .replace( // Replace TextWindow.Read
+    /TextWindow.Read\((.*)\)/gim,
+    "//prompt('Please insert your data')"
+  )
   .replace( // Replace and
     / AND /gim,
     " && "
