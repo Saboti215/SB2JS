@@ -12,12 +12,10 @@ const convertSB2JS = c => {
     /(EndIf)|(EndFor)|(EndWhile)|(EndSub)/gim,
     "}"
   )
-  /* We cannot know if a variable was already initialised, but JS won't throw an error on reinitialation (hopefully)
   .replace( // Convert Variable initialisation
     /^([a-zA-Z0-9]*\s*=.*)$/gim,
     "let $1"
   )
-  */
   .replace( // Replace For loop with Step
     /For ([a-zA-Z0-9]+) = ([a-zA-Z0-9]+) To ([a-zA-Z0-9]+) Step ((-|\+)?[0-9]+)/gim,
     "for (let $1 = $2; $1 <= $3; $1+=$4){"
