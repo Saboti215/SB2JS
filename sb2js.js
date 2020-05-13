@@ -32,7 +32,7 @@ const convertSB2JS = c => {
   )
   .replace( // Replace TextWindow.WriteLine and .Write
     /TextWindow.Write(Line)?\((.*)\)/gim,
-    "console.log($1)"
+    "console.log($2)"
   )
   .replace( // Replace TextWindow.Read
     /TextWindow.Read\((.*)\)/gim,
@@ -47,19 +47,19 @@ const convertSB2JS = c => {
     " || "
   )
   .replace( // Replace If
-    /If (.*) Then/gim,
+    /If\s*(.*)\s*Then/gim,
     "if ($1) {"
   )
   .replace( // Replace ElseIf
-    /ElseIf (.*) Then/gim,
+    /ElseIf\s*(.*)\s*Then/gim,
     "} else if ($1) {"
   )
   .replace( // Replace Else
-    /Else /gim,
+    /Else/gim,
     "} else {"
   )
   .replace( // Replace While
-    /While (.*)/gim,
+    /While\s*(.*)/gim,
     "while ($1) {"
   )
   .replace( // Replace comments
