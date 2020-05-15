@@ -12,6 +12,10 @@ const convertSB2JS = c => {
     /(EndIf$)|(EndFor$)|(EndWhile$)|(EndSub$)/gim,
     "}"
   )
+  .replace( // COnverts constants
+    /CONST (.*)/gim,
+    "const $1"
+  )
   .replace( // Replace For loop without Step
     /For ([a-zA-Z0-9]+) = ([a-zA-Z0-9]+) To ([a-zA-Z0-9]+)$/gim,
     "for (let $1 = $2; $1 <= $3; $1++){"
