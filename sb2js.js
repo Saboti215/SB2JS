@@ -17,15 +17,15 @@ const convertSB2JS = c => {
     "const $1"
   )
   .replace( // Replace For loop without Step
-    /For ([a-zA-Z0-9]+) = ([a-zA-Z0-9]+) To ([a-zA-Z0-9]+)$/gim,
+    /For ([a-zA-Z0-9_$]+) = ([a-zA-Z0-9_$]+) To ([a-zA-Z0-9_$]+)$/gim,
     "for (let $1 = $2; $1 <= $3; $1++){"
   )
   .replace( // Replace For loop with Step
-    /For ([a-zA-Z0-9]+) = ([a-zA-Z0-9]+) To ([a-zA-Z0-9]+) Step ((-|\+)?[0-9]+)/gim,
+    /For ([a-zA-Z0-9_$]+) = ([a-zA-Z0-9_$]+) To ([a-zA-Z0-9_$]+) Step ((-|\+)?[0-9]+)/gim,
     "for (let $1 = $2; $1 <= $3; $1+=$4){"
   )
   .replace( // Convert Variable initialisation
-    /^([a-zA-Z0-9]*\s*=.*)$/gim,
+    /^([a-zA-Z0-9_$]*\s*=.*)$/gim,
     "let $1"
   )
   .replace( // Replace unequal
