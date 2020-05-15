@@ -6,7 +6,8 @@ const convertSB2JS = c => {
     "$1"
   )
   js = convertMathMethods(js) // Convert whole Math Library
-  js = convertTextMethods(js)
+  js = convertTextMethods(js) // Convert whole Text Library
+  js = convertArrays(js) // Convert everything about arrays
   js = js
   .replace( // Convert End of Blocks
     /(EndIf$)|(EndFor$)|(EndWhile$)|(EndSub$)/gim,
@@ -88,6 +89,43 @@ const convertSB2JS = c => {
   // Change = to ==, but only in conditions
 
   return js;
+}
+
+const convertArrays = s => {
+  // Benutzer[1] = "Tim" Same Syntax as in JS, so we do not have to convert this
+  return s
+  .replace(
+    /Array.ContainsIndex\((.*),(.*)\)/gim,
+    "$1[$2]!==undefiend"
+  )
+  .replace(
+    /Array.ContainsValue\((.*),(.*)\)/gim,
+    "$1.includes($2)"
+  )
+  .replace(
+    /Array.GetAllIndices\((.*)\)/gim,
+    "Object.keys($1)"
+  )
+  .replace(
+    /Array.GetItemCount\((.*)\)/gim,
+    "$1.length"
+  )
+  .replace(
+    /Array.IsArray\((.*)\)/gim,
+    "Array.isArray($1)"
+  )
+  .replace(
+    /Array.SetValue\((.*),(.*),(.*)\)/gim,
+    "$1[$2] = $3"
+  )
+  .replace(
+    /Array.GetValue\((.*),(.*)\)/gim,
+    "$1[$2]"
+  )
+  .replace(
+    /Array.RemoveValue\((.*),(.*)\)/gim,
+    "delete $1[$2]"
+  )
 }
 
 const convertTextMethods = s => {
