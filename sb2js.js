@@ -21,7 +21,7 @@ const convertSB2JS = c => {
     "for (let $1 = $2; $1 <= $3; $1++){"
   )
   .replace( // Replace For loop with Step
-    /For ([a-zA-Z0-9_$]+) = ([a-zA-Z0-9_$]+) To ([a-zA-Z0-9_$]+) Step ((-|\+)?[0-9]+)/gim,
+    /For ([a-zA-Z0-9_$]+) = ([a-zA-Z0-9_$&]+) To ([a-zA-Z0-9_$&]+) Step ([a-zA-Z0-9_$&]+)/gim,
     "for (let $1 = $2; $1 <= $3; $1+=$4){"
   )
   .replace( // Convert Variable initialisation
